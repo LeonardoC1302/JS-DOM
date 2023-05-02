@@ -57,8 +57,8 @@ msgInput.addEventListener('input', readText);
 // Submit Event
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(e.target.action);
-    console.log(e.target.method);
+    // Validate Form
+    
     console.log('Form Submitted');
 });
 
