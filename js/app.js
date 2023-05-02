@@ -29,14 +29,14 @@ document.addEventListener('DOMContentLoaded', () => console.log('DOM Loaded')); 
 window.onScroll = () => console.log('Scrolling...'); // Scroll
 
 // Event Listeners for HTML Elements
-const btnSend = document.querySelector('.boton--primario');
-btnSend.addEventListener('click', (e) => {
-    console.log(e);
-    e.preventDefault(); // Prevents default action
-    // Form Validation
+// const btnSend = document.querySelector('.boton--primario');
+// btnSend.addEventListener('click', (e) => {
+//     console.log(e);
+//     e.preventDefault(); // Prevents default action
+//     // Form Validation
 
-    console.log('Form Sent');
-});
+//     console.log('Form Sent');
+// });
 
 // Events for Inputs and Text Areas
 const data = {
@@ -58,12 +58,36 @@ msgInput.addEventListener('input', readText);
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     // Validate Form
-    
-    console.log('Form Submitted');
+    const { nombre, email, mensaje } = data;
+    console.log(nombre);
+    console.log(email);
+    console.log(mensaje);
+
+    if (nombre === '' || email === '' || mensaje === '') {
+        showAlert('All fields are required', true);
+        return;
+    }
+
+    // Send Form
+    showAlert('Form Sent');
 });
 
-function readText() {
+function readText(e) {
     console.log(e.target.value);
     data[e.target.id] = e.target.value; // Add value to data object
     console.log(data);
+}
+
+function showAlert(msg, error=null){
+    const alert = document.createElement('P');
+    alert.textContent = msg;
+    if (error) {
+        alert.classList.add('error');
+    } else {
+        alert.classList.add('correcto');
+    }
+    form.appendChild(alert);
+    setTimeout(() => {
+        alert.remove();
+    }, 3000);
 }
