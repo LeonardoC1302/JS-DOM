@@ -22,3 +22,48 @@ newLink.classList.add('navegacion__enlace'); // Add class
 // Add to HTML
 const navegation = document.querySelector('.navegacion');
 navegation.appendChild(newLink);
+
+// Event Listeners
+window.addEventListener('load', () => console.log('Page Loaded')); // Load waits for JS and files that depend on HTML to load
+document.addEventListener('DOMContentLoaded', () => console.log('DOM Loaded')); // DOMContentLoaded waits for HTML to load
+window.onScroll = () => console.log('Scrolling...'); // Scroll
+
+// Event Listeners for HTML Elements
+const btnSend = document.querySelector('.boton--primario');
+btnSend.addEventListener('click', (e) => {
+    console.log(e);
+    e.preventDefault(); // Prevents default action
+    // Form Validation
+
+    console.log('Form Sent');
+});
+
+// Events for Inputs and Text Areas
+const data = {
+    nombre: '',
+    email: '',
+    mensaje: ''
+}
+
+const nameInput = document.querySelector('#nombre');
+const emailInput = document.querySelector('#email');
+const msgInput = document.querySelector('#mensaje');
+const form = document.querySelector('.formulario');
+
+nameInput.addEventListener('input', readText);
+emailInput.addEventListener('input', readText);
+msgInput.addEventListener('input', readText);
+
+// Submit Event
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(e.target.action);
+    console.log(e.target.method);
+    console.log('Form Submitted');
+});
+
+function readText() {
+    console.log(e.target.value);
+    data[e.target.id] = e.target.value; // Add value to data object
+    console.log(data);
+}
